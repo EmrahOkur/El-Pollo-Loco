@@ -1,0 +1,437 @@
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-image: url(img/9_intro_outro_screens/background/desert.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "zabras";
+  touch-action: none;
+}
+
+canvas {
+  background-color: black;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button,
+img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+@font-face {
+  font-family: "zabras";
+  src: url("fonts/zabars.ttf") format("truetype");
+}
+
+h1 {
+  font-size: 80px;
+  letter-spacing: 3px;
+  text-shadow: 4px 2px 10px (0, 0, 0, 0.5);
+}
+
+.flexJust {
+  display: flex;
+  justify-content: center;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.rotate {
+  display: none;
+  position: absolute;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.start-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  background-image: url("img/9_intro_outro_screens/start/startscreen_1.png");
+  width: 720px;
+  height: 480px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+.btn-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "zabras";
+  width: 300px;
+  height: 60px;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  font-size: 28px;
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3), 4px 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-style:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.btn-style:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #0f3443, #34e89e);
+}
+
+.game-over-screen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  background-size: contain;
+  background-image: url("img/9_intro_outro_screens/game_over/game over.png");
+  width: 720px;
+  height: 480px;
+  background-position: center right;
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+}
+
+.game-winner-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  background-image: url("img/9_intro_outro_screens/start/startscreen_2.png");
+  width: 720px;
+  height: 480px;
+  background-position: center right;
+}
+
+.game-winner-screen h2 {
+  font-size: 42px;
+  color: #000000;
+  letter-spacing: 8px;
+}
+
+.canvasScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.canvasScreen img {
+  max-width: 40px;
+  position: absolute;
+  z-index: 3;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.fullscreenIcon {
+  margin-right: 60px;
+}
+
+.muteIcon {
+  margin-left: 60px;
+}
+
+#btnArrowRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4px;
+}
+
+#btnArrowLeft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 4px;
+}
+
+#jumpIcon {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  padding: 4px;
+}
+
+#btnBottleIcon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 42px;
+  width: 50px;
+  padding: 4px;
+}
+
+.buttonContainerLeft {
+  display: none;
+  display: flex;
+  gap: 32px;
+  position: absolute;
+  bottom: -12px;
+  left: 60px;
+  padding: 24px;
+}
+
+.buttonContainerRight {
+  display: none;
+  display: flex;
+  gap: 32px;
+  position: absolute;
+  bottom: -12px;
+  right: 50px;
+  padding: 24px;
+}
+.buttonContainerLeft button {
+  height: 50px;
+  width: 50px;
+  box-shadow: inset 0px 1px 0px 0px #f9eca01f;
+  background: #f0cb111f;
+  background-color: #ffa60031;
+  border-radius: 6px;
+  border: 1px solid #0000003b;
+  cursor: pointer;
+  padding: 6px 12px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.buttonContainerRight button {
+  height: 50px;
+  width: 50px;
+  box-shadow: inset 0px 1px 0px 0px #f9eca01f;
+  background: #f0cb111f;
+  background-color: #ffa60031;
+  border-radius: 6px;
+  border: 1px solid #0000003b;
+  cursor: pointer;
+  padding: 6px 12px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.buttonContainerRight button:hover {
+  background-color: #ffc40048;
+}
+.buttonContainerLeft button:hover {
+  background-color: #ffc40048;
+}
+
+.buttonContainerRight button:active {
+  position: relative;
+  top: 1px;
+}
+.buttonContainerRight i {
+  font-size: 30px;
+}
+
+.buttonContainerLeft button:active {
+  position: relative;
+  top: 1px;
+}
+.buttonContainerLeft i {
+  font-size: 30px;
+}
+.bold {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.how-to-play {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  padding: 0 24px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 25px;
+  position: relative;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  letter-spacing: 1.5px;
+  padding-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 600px;
+  margin: 40px auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.how-to-play:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.how-to-play-title {
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.how-to-play p {
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.highlight {
+  color: #ffcc00;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.how-to-play-explain {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.how-to-play-explain p {
+  padding-left: 10px;
+}
+
+.backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.5);
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+}
+
+.top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+.top-right:hover {
+  font-size: 26px;
+}
+
+@media only screen and (max-height: 700px) {
+  h1 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  body {
+    justify-content: center;
+  }
+
+  #canvas {
+    width: calc(100vw - (2 * 70px));
+  }
+
+  .start-screen {
+    width: calc(100vw - (2 * 70px));
+    height: 400px;
+  }
+  .game-over-screen {
+    width: calc(100vw - (2 * 70px));
+    height: 400px;
+  }
+
+  .game-winner-screen {
+    width: calc(100vw - (2 * 70px));
+    height: 400px;
+  }
+  .buttonContainerLeft {
+    display: flex;
+  }
+
+  .buttonContainerRight {
+    display: flex;
+  }
+
+  h1 {
+    font-size: 50px;
+    margin-top: 80px;
+  }
+
+  .rotate img {
+    width: 100%;
+  }
+
+  .how-to-play {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    font-size: 20px;
+  }
+}
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 10;
+  color: #fff;
+}
+
+.footer-links a {
+  color: #ffd700;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+    <title>El Pollo Loco</title>
+    <link
+      rel="icon"
+      href="img/2_character_pepe/3_jump/J-38.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaquerry.css" />
+    <script src="classes/world.class.js"></script>
+    <script src="classes/drawable-object.class.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="classes/health-bar.class.js"></script>
+    <script src="classes/endboss-bar-heart.class.js"></script>
+    <script src="classes/endboss-bar.class.js"></script>
+    <script src="classes/coin-bar.class.js"></script>
+    <script src="classes/bottle-bar.class.js"></script>
+    <script src="classes/cloud.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
+    <script src="classes/mini-chicken.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/coin.class.js"></script>
+    <script src="classes/bottle.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="classes/background-object.class.js"></script>
+    <script src="classes/sound-manager.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/game.js"></script>
+    
+  </head>
+  <h1>El Pollo Loco</h1>
+  <div class="rotate"><img src="img/rotate-phone.gif" alt="" srcset=""></div>
+
+  <body>
+    <div class="canvasScreen" id="fullscreen">
+        <div class="buttonContainerLeft d-none" id="buttonsLeft">
+           <button 
+           onmousedown="simulateKeyPressed(13,'keydown')" 
+           onmouseup="simulateKeyPressed(13,'keyup')" 
+           ontouchstart="event.preventDefault(); simulateKeyPressed(13,'keydown')" 
+           ontouchend="event.preventDefault(); simulateKeyPressed(13,'keyup')"
+           oncontextmenu="event.preventDefault();">
+           <img id="btnBottleIcon" src="./img/6_salsa_bottle/salsa_bottle.png">
+         </button>
+         
+         <button 
+           onmousedown="simulateKeyPressed(32,'keydown')" 
+           onmouseup="simulateKeyPressed(32,'keyup')" 
+           ontouchstart="event.preventDefault(); simulateKeyPressed(32,'keydown')" 
+           ontouchend="event.preventDefault(); simulateKeyPressed(32,'keyup')" 
+           oncontextmenu="event.preventDefault();">
+           <img id="jumpIcon" src="img/2_character_pepe/3_jump/J-36.png">
+         </button>
+         
+        </div>
+        <div class="flexJust">
+          <div class="start-screen" id="startScreen">
+            <button class="btn-style" onclick="startGame()">START GAME</button>
+            <button class="btn-style" onclick="openHowToPlay()">GAME INTRODUCTION</button>
+
+
+            <div onclick="closeHowToPlay()" id="mainHTP" class="backdrop d-none">
+              <div class="how-to-play">
+                <i onclick="closeHowToPlay()" class="fa-solid fa-circle-xmark top-right"></i>
+                <h3>GAME INTRODUCTION</h3>
+                <div class="how-to-play-explain">
+                  <i class="fa-solid fa-circle-left"></i>
+                  <p> PRESS <span class="bold">A</span> OR <span>LEFT ARROW-KEY</span class="bold"> TO GO LEFT</p>
+                </div>
+                <div class="how-to-play-explain">
+                  <i class="fa-solid fa-turn-up"></i>
+                  <p> PRESS <span class="bold">SPACE-KEY</span> TO JUMP</p>
+                </div>
+                <div class="how-to-play-explain">
+                  <i class="fa-solid fa-circle-right"></i>
+                  <p> PRESS <span class="bold">D</span> OR <span class="bold">RIGHT ARROW-KEY</span> TO GO RIGHT</p>
+                </div>
+                <div class="how-to-play-explain">
+                  <i class="fa-solid fa-bottle-droplet"></i>
+                  <p> PRESS <span class="bold">ENTER</span> TO THROW BOTTLES</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="game-over-screen d-none" id="gameOverScreen">
+            <button class="btn-style" onclick="restartGame()">RESTART GAME</button>
+            <button class="btn-style" id="restartButton" onclick="backToStartScreen()">MAIN MENU</button>
+          </div>
+          <div class="game-winner-screen d-none" id="gameWinnerScreen">
+            <h2>YOU ARE A WINNER!</h2>
+            <button class="btn-style" onclick="restartGame()">RESTART GAME</button>
+            <button class="btn-style" onclick="backToStartScreen()">MAIN MENU</button>
+          </div>
+          <img id="muteButton" class="muteIcon d-none" src="./img/sound.png" onclick="muteGame()" />
+          <img id="fullscreenButton" class="fullscreenIcon d-none" src="./img/maximize.png"
+            onclick="fullscreenGame()" />
+          <img id="endMuteButton" class="muteIcon d-none" src="./img/mute.png" onclick="endMuteGame()" />
+          <img id="endFullscreen" class="fullscreenIcon d-none" src="./img/exit-fullscreen.png"
+            onclick="endFullscreenGame()" />
+          <canvas id="canvas" class="d-none" width="720" height="480"> </canvas>
+        </div>
+        <div class="buttonContainerRight d-none" id="buttonsRight">
+    
+         
+    
+           
+          <button onmousedown="simulateKeyPressed(37,'keydown')" onmouseup="simulateKeyPressed(37,'keyup')"
+          ontouchstart="simulateKeyPressed(37,'keydown'); event.preventDefault();"  ontouchend="simulateKeyPressed(37,'keyup')"
+          oncontextmenu="event.preventDefault();">
+        <img id="btnArrowLeft" src="img/left-arrow.png" oncontextmenu="return false;">
+      </button>
+      
+      <button onmousedown="simulateKeyPressed(39,'keydown')" onmouseup="simulateKeyPressed(39,'keyup')"
+          ontouchstart="simulateKeyPressed(39,'keydown');event.preventDefault();" " ontouchend="simulateKeyPressed(39,'keyup')"
+          oncontextmenu="event.preventDefault();">
+        <img id="btnArrowRight" src="img/right-arrow.png" oncontextmenu="return false;">
+      </button>
+      
+    
+        </div>
+      </div>
+    
+    
+      <footer>
+        <div class="footer-links">
+          <a href="impressum.html">Impressum</a> | 
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </footer>
+  </body>
+</html>
